@@ -13,13 +13,20 @@ Private, quota-safe Brandsearch CLI for Curtis/Hermes.
 
 ## Install anywhere
 
-After this repo is pushed to GitHub:
+This repo is private, so first authenticate GitHub on the target machine:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/curtisboadum/brandsearch-cli/main/scripts/install.sh | bash
+gh auth login
 ```
 
-This clones/updates the repo at `~/.brandsearch-cli` and writes a wrapper to `~/.local/bin/brandsearch`.
+Then install/update:
+
+```bash
+gh repo clone curtisboadum/brandsearch-cli ~/.brandsearch-cli 2>/dev/null || git -C ~/.brandsearch-cli pull --ff-only
+~/.brandsearch-cli/scripts/install.sh
+```
+
+This keeps the repo at `~/.brandsearch-cli` and writes a wrapper to `~/.local/bin/brandsearch`.
 
 ## Install locally
 
