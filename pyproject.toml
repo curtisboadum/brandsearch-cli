@@ -1,0 +1,20 @@
+[project]
+name = "brandsearch-cli"
+version = "0.1.0"
+description = "Quota-safe private Brandsearch CLI for agent workflows"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Hermes for Curtis" }]
+license = { text = "Private" }
+
+[project.scripts]
+brandsearch = "brandsearch_cli.cli:main"
+brandsearch-pp-cli = "brandsearch_cli.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

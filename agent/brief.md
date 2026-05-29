@@ -1,0 +1,1 @@
+Brandsearch CLI is a private, quota-safe command-line tool for Brandsearch research. Use it when you need account/usage checks, facets, lookup, or explicitly approved scouting/discovery while preserving API quota and avoiding key leakage.
