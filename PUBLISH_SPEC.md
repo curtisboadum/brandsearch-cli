@@ -1,23 +1,29 @@
-# Brandsearch CLI publish + hook spec
+# Release checklist
 
-## Objective
-Push the private Brandsearch CLI to GitHub and make it easy for Hermes/terminal sessions to use anywhere.
+Use this checklist before publishing a new release or changing repository visibility.
 
-## Constraints
-- Keep repo private by default.
-- Do not commit API keys, `.env`, cache outputs, or real Brandsearch data.
-- Do not run metered Brandsearch endpoints.
-- Do not restart Telegram gateway in this task.
+## Safety
 
-## Success criteria
-- Git repo initialized and pushed to `curtisboadum/brandsearch-cli`.
-- Repo includes safe installer/wrapper scripts.
-- Local `brandsearch` command works from `~/.local/bin`.
-- Hermes hook exists and is configured to remind Hermes to use the CLI for Brandsearch-related prompts.
-- Tests pass before push.
-- Megamind run note saved and synced.
+- [ ] No API keys, tokens, `.env` files, or private exports committed.
+- [ ] Metered Brandsearch calls remain blocked unless `--approve-metered` is provided.
+- [ ] Dry-run mode does not call the network.
+- [ ] CLI still rejects secret-looking command-line arguments.
+- [ ] Docs tell users to keep `BRANDSEARCH_API_KEY` local.
 
-## Hook approach
-1. Terminal hook/wrapper: install `brandsearch` into `~/.local/bin` so shells/Hermes terminal can call it anywhere.
-2. Hermes pre-LLM hook: add `~/.hermes/agent-hooks/brandsearch-cli-context.py` that fires only for Brandsearch/ecommerce scouting prompts and injects the CLI path, repo path, safe commands, and approval gates.
-3. Do not restart gateway; hook takes effect on new Hermes/gateway process after config reload/approval.
+## Verification
+
+- [ ] Unit tests pass.
+- [ ] `brandsearch --brief` works.
+- [ ] `brandsearch --help-json` returns valid JSON.
+- [ ] `brands discover --dry-run` returns `network_call: false`.
+- [ ] Secret scan finds no real Brandsearch keys.
+- [ ] GitHub Actions pass after push.
+
+## Documentation
+
+- [ ] `README.md` updated.
+- [ ] `docs/quickstart.md` updated.
+- [ ] `docs/api-safety.md` updated.
+- [ ] `docs/commands.md` updated.
+- [ ] `docs/agent-workflows.md` updated.
+- [ ] `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, and `LICENSE` are present.

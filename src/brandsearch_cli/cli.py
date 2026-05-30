@@ -16,17 +16,17 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple
 
 VERSION = "0.1.0"
 BASE_URL = "https://api.brandsearch.co"
-DEFAULT_DATA_DIR = Path("/Volumes/ExternalStorage/Hermes/workspaces/brandsearch-cli-data")
+DEFAULT_DATA_DIR = Path(os.environ.get("BRANDSEARCH_CLI_DATA_DIR", "~/.brandsearch-cli-data")).expanduser()
 SECRET_PATTERNS = [re.compile(r"bsk_[A-Za-z0-9_\-]+"), re.compile(r"(?i)(api[_-]?key|token|secret)=")]
 RULES = [
     "Default output is JSON for agent use.",
     "Never pass Brandsearch API keys as command-line arguments; use BRANDSEARCH_API_KEY.",
     "Metered commands require --approve-metered; use --dry-run before approval.",
-    "Save raw outputs under ExternalStorage and summaries to Megamind.",
+    "Save raw outputs outside your source tree and summarize findings separately.",
 ]
 ISSUE = {
-    "local_feedback": "Edit issues in this private repo or report to Hermes.",
-    "approval_required_for": ["real_api_key_use", "metered_requests", "mcp_configuration", "public_publish"],
+    "feedback": "Open an issue at https://github.com/curtisboadum/brandsearch-cli/issues.",
+    "approval_required_for": ["real_api_key_use", "metered_requests", "mcp_configuration", "automation_at_scale"],
 }
 
 UNMETERED_PATHS = {
