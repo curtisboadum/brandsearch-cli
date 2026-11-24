@@ -52,38 +52,23 @@ Brandsearch CLI is intentionally conservative.
 
 No third-party Python packages are required for normal CLI use.
 
-## Installation
-
-### Option 1: install from GitHub with the included script
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/curtisboadum/brandsearch-cli/main/scripts/install.sh | bash
-```
-
-The installer clones or updates the repo at `~/.brandsearch-cli` and writes a wrapper to `~/.local/bin/brandsearch`.
-
-Make sure `~/.local/bin` is on your `PATH`:
-
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-### Option 2: clone manually
-
-```bash
-git clone https://github.com/curtisboadum/brandsearch-cli.git
-cd brandsearch-cli
-python3 -m pip install -e .
-```
-
-### Option 3: run without installing
+## Try it without credentials or API usage
 
 ```bash
 git clone https://github.com/curtisboadum/brandsearch-cli.git
 cd brandsearch-cli
 PYTHONPATH=src python3 -m brandsearch_cli.cli --brief
-./scripts/brandsearch --brief
 ```
+
+To install into a local virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -e .
+```
+
+The [optional installer](scripts/install.sh) writes a wrapper to `~/.local/bin`. Review it before running.
 
 ## Configure your API key
 
