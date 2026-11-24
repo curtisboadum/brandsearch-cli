@@ -1,10 +1,27 @@
 # Brandsearch CLI
 
-A quota-safe, agent-friendly command-line interface for the [Brandsearch](https://brandsearch.co/) API.
+Preview ecommerce research queries before spending API credits. This unofficial Python client for the [Brandsearch API](https://brandsearch.co/) makes metered requests opt-in and returns structured JSON for downstream tools.
 
-Brandsearch CLI helps humans and AI agents explore ecommerce/DTC brands without accidentally burning quota. It defaults to JSON output, blocks metered discovery until explicit approval, rejects API keys passed as command-line arguments, and provides dry-run planning for paid/credit-bearing calls.
+## Try a dry run in under a minute
 
-> This project is community-maintained and is not an official Brandsearch product.
+The example plans a five-result discovery query without a key, network call, or spend.
+
+```sh
+git clone https://github.com/curtisboadum/brandsearch-cli.git
+cd brandsearch-cli
+PYTHONPATH=src python3 -m brandsearch_cli.cli brands discover \
+  --dry-run --limit 5 --niche 'Beauty & Skincare'
+```
+
+Look for `data.approval_required: true`, `data.estimated_credits: 5`, and `meta.network_call: false` in the response. The estimate is not a charge.
+
+| Task | What happens |
+| --- | --- |
+| Preview a discovery query | Returns the plan locally; no API call |
+| Run metered discovery | Requires `--approve-metered` and your own API key |
+| Review or reuse results | Machine-readable JSON, optional CSV output |
+
+[Installation](#try-it-without-credentials-or-api-usage) · [Command examples](#quick-start) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md) · [MIT licence](LICENSE)
 
 ## Why this exists
 
